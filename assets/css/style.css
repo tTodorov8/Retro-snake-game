@@ -1,0 +1,18 @@
+.snake {
+  background-color: red;
+}
+
+.apple {
+  background-color: green;
+}
+div {
+  width: 10px;
+  height: 10px;
+  outline: 1px solid black;
+}
+.game-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100px;
+  /* height: 100px; */
+}
