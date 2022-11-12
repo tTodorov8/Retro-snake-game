@@ -22,15 +22,17 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    width: 200px;
+    width: 400px;
     margin: 15px auto;
+    background-color: gray;
     div {
-      width: 20px;
-      height: 20px;
+      width: 40px;
+      height: 40px;
       outline: 1px solid black;
     }
     .snake {
-      background-image: url("../images/snake.png");
+      background-color: rgb(145, 183, 88);
+      // background-image: url("../images/snake.png");
       background-size: cover;
     }
     .apple {

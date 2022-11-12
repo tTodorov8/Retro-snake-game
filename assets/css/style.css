@@ -19,16 +19,17 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  width: 200px;
+  width: 400px;
   margin: 15px auto;
+  background-color: gray;
 }
 .game-wrapper .squares-container div {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   outline: 1px solid black;
 }
 .game-wrapper .squares-container .snake {
-  background-image: url("../images/snake.png");
+  background-color: rgb(145, 183, 88);
   background-size: cover;
 }
 .game-wrapper .squares-container .apple {
