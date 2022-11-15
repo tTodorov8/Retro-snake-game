@@ -33,37 +33,65 @@ document.addEventListener("DOMContentLoaded", function (params) {
   }
   // All activities of the snake
   function runTheGame() {
-    console.log(currentSnake[0]);
-    // if hits the right border
-    if (currentSnake[0] % width === width - 1 && direction === 1) {
-      // the below code is for passing trough the wall , in progress
-      // currentSnake[0] = currentSnake[0] - width + 1;
-      alert(`GAME OVER`);
-      startResetGame();
-      // if hits the left border
-    } else if (currentSnake[0] % width === 0 && direction === -1) {
-      alert(`GAME OVER`);
-      startResetGame();
-      // if hits the up border
-    } else if (currentSnake[0] - width < 0 && direction === -10) {
-      console.log(currentSnake[0]);
-      alert(`GAME OVER`);
-      startResetGame();
-      // if hits the bottom border
-    } else if (currentSnake[0] >= width * width) {
-      alert(`GAME OVER`);
-      startResetGame();
-    }
+    // Logic if the snake hits borders and itself - Game variant 1
+    // if (
+    //   (currentSnake[0] % width === width - 1 && direction === 1) || //right
+    //   (currentSnake[0] % width === 0 && direction === -1) || // left
+    //   (currentSnake[0] - width < 0 && direction === -width) || // up
+    //   (currentSnake[0] >= width * width && direction === width) || // down
+    //   squares[currentSnake[0] + direction].classList.contains("snake")
+    // ) {
+    //   alert(`GAME OVER`);
+    //   return clearInterval(gameInterval);
+    // }
+    // let tail = currentSnake.pop();
+    // squares[tail].classList.remove("snake");
+    // //Moving the snake forward , unshift 0 index of the snake plus direction of movement
+    // currentSnake.unshift(currentSnake[0] + direction);
+
+    ////////////
+
+    /// Variant 2 - move trough walls
 
     //  Remove class snake of the tail
     let tail = currentSnake.pop();
     squares[tail].classList.remove("snake");
     //Moving the snake forward , unshift 0 index of the snake plus direction of movement
     currentSnake.unshift(currentSnake[0] + direction);
-    squares[currentSnake[0]].classList.add("snake");
+    console.log(currentSnake[0]);
+    /////////////////
+    if (currentSnake[0] < 0) {
+      console.log(`LESSSS`);
+      currentSnake[0] = width - 1;
+    }
+    22;
+    //right
+    if (currentSnake[0] % width === 0 && direction === 1) {
+      currentSnake[0] -= width;
+      squares[currentSnake[0]].classList.add("snake");
+      //left
+    } else if (currentSnake[0] % width === width - 1 && direction === -1) {
+      currentSnake[0] += width;
+
+      squares[currentSnake[0]].classList.add("snake");
+      // up
+    } else if (currentSnake[0] < 0 && direction === -width) {
+      currentSnake[0] = width * width + currentSnake[0] - width + width;
+      squares[currentSnake[0]].classList.add("snake");
+      //down
+    } else if (currentSnake[0] >= width * width && direction === width) {
+      console.log(`more than 0`);
+      currentSnake[0] = currentSnake[0] % width;
+      squares[currentSnake[0]].classList.add("snake");
+    }
+
+    //////////////
 
     // If the snake  eat an apple
-    if (squares[currentSnake[0]].classList.contains("apple")) {
+    if (
+      squares[currentSnake[0]] &&
+      squares[currentSnake[0]].classList.contains("apple")
+    ) {
       squares[currentSnake[0]].classList.remove("apple");
       squares[currentSnake[0]].classList.add("snake");
       currentSnake.push(currentSnake[0]);
