@@ -1,42 +1,66 @@
 @font-face {
-  font-family: "game-font";
+  font-family: "retro-game-font";
   src: url(../fonts/Retro\ Gaming.ttf);
 }
 
-.game-wrapper {
-  text-align: center;
-  .title {
-    font-family: "game-font";
+body {
+  background-color: black;
+  .game-wrapper {
+    position: relative;
+    background-color: black;
+    text-align: center;
+    .title {
+      font-family: "retro-game-font";
 
-    h1 {
+      h1 {
+        color: white;
+      }
+      p {
+      }
+      button {
+        box-shadow: 1px 1px 2px 3px;
+        font-family: "retro-game-font";
+        height: 45px;
+      }
+      .score {
+        margin-top: 15px;
+        color: azure;
+      }
     }
-    button {
-      box-shadow: 1px 1px 2px 3px;
-      font-family: "game-font";
+    .squares-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 400px;
+      margin: 15px auto;
+      background-color: #323330;
+      div {
+        width: 40px;
+        height: 40px;
+        // outline: 1px solid black;
+      }
+      .snake {
+        background-color: #f0db4f;
+        // border-radius: 50%;
+        // background-image: url("../images/snake.png");
+        background-size: cover;
+      }
+      .apple {
+        background-color: #8f120e;
+      }
     }
-    .score {
-      margin-top: 15px;
-    }
-  }
-  .squares-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 400px;
-    margin: 15px auto;
-    background-color: gray;
-    div {
-      width: 40px;
-      height: 40px;
-      outline: 1px solid black;
-    }
-    .snake {
-      background-color: rgb(145, 183, 88);
-      // background-image: url("../images/snake.png");
-      background-size: cover;
-    }
-    .apple {
-      background-color: green;
+    .game-over {
+      position: absolute;
+      display: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #323330;
+      h1 {
+        color: red;
+        font-size: 48px;
+        font-family: "retro-game-font";
+      }
     }
   }
 }

@@ -1,39 +1,61 @@
 @font-face {
-  font-family: "game-font";
+  font-family: "retro-game-font";
   src: url(../fonts/Retro\ Gaming.ttf);
 }
-.game-wrapper {
+body {
+  background-color: black;
+}
+body .game-wrapper {
+  position: relative;
+  background-color: black;
   text-align: center;
 }
-.game-wrapper .title {
-  font-family: "game-font";
+body .game-wrapper .title {
+  font-family: "retro-game-font";
 }
-.game-wrapper .title button {
+body .game-wrapper .title h1 {
+  color: white;
+}
+body .game-wrapper .title button {
   box-shadow: 1px 1px 2px 3px;
-  font-family: "game-font";
+  font-family: "retro-game-font";
+  height: 45px;
 }
-.game-wrapper .title .score {
+body .game-wrapper .title .score {
   margin-top: 15px;
+  color: azure;
 }
-.game-wrapper .squares-container {
+body .game-wrapper .squares-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   width: 400px;
   margin: 15px auto;
-  background-color: gray;
+  background-color: #323330;
 }
-.game-wrapper .squares-container div {
+body .game-wrapper .squares-container div {
   width: 40px;
   height: 40px;
-  outline: 1px solid black;
 }
-.game-wrapper .squares-container .snake {
-  background-color: rgb(145, 183, 88);
+body .game-wrapper .squares-container .snake {
+  background-color: #f0db4f;
   background-size: cover;
 }
-.game-wrapper .squares-container .apple {
-  background-color: green;
+body .game-wrapper .squares-container .apple {
+  background-color: #8f120e;
+}
+body .game-wrapper .game-over {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #323330;
+}
+body .game-wrapper .game-over h1 {
+  color: red;
+  font-size: 48px;
+  font-family: "retro-game-font";
 }
 
 /*# sourceMappingURL=style.css.map */
