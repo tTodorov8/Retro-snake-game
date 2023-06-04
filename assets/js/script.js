@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const startResetButton = document.querySelector(".start-reset-button");
   const displayScore = document.querySelector(".score");
   const gameOverDisplay = document.querySelector(".game-over");
+  
+  // Variables for touch movement
+  let touchXStart = 0;
+  let touchYStart = 0;
+
 
   //
   // Function to start and reset the game
@@ -37,6 +42,52 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     randomApple();
     gameOverDisplay.style.display = "none";
+  }
+  //touch movement part
+  document.addEventListener('touchstart', handleTouchStart, false);
+  document.addEventListener('touchmove', handleTouchMove, false);
+
+// Handle touch start event
+function handleTouchStart(e) {
+  touchXStart = e.touches[0].clientX;
+  touchYStart = e.touches[0].clientY;
+}
+
+// Handle touch move event
+function handleTouchMove(e) {
+  if (!touchXStart || !touchYStart) {
+    return;
+  }
+
+  var touchXEnd = e.touches[0].clientX;
+    var touchYEnd = e.touches[0].clientY;
+
+    var touchXDiff = touchXStart - touchXEnd;
+    var touchYDiff = touchYStart - touchYEnd;
+
+    if (Math.abs(touchXDiff) > Math.abs(touchYDiff)) {
+      // Horizontal movement
+      if (touchXDiff > 0) {
+        // Swipe left
+        direction = -1;
+      } else {
+        // Swipe right
+        direction = 1;
+      }
+    } else {
+      // Vertical movement
+      if (touchYDiff > 0) {
+        // Swipe up
+        direction = -width;
+      } else {
+        // Swipe down
+        direction = width;
+      }
+    }
+
+    // Reset touch variables
+    touchXStart = 0;
+    touchYStart = 0;
   }
   // All activities of the snake
   function runTheGame() {
