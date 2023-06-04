@@ -59,11 +59,11 @@ function handleTouchMove(e) {
     return;
   }
 
-  var touchXEnd = e.touches[0].clientX;
-    var touchYEnd = e.touches[0].clientY;
+  let touchXEnd = e.touches[0].clientX;
+    let touchYEnd = e.touches[0].clientY;
 
-    var touchXDiff = touchXStart - touchXEnd;
-    var touchYDiff = touchYStart - touchYEnd;
+    let touchXDiff = touchXStart - touchXEnd;
+    let touchYDiff = touchYStart - touchYEnd;
 
     if (Math.abs(touchXDiff) > Math.abs(touchYDiff)) {
       // Horizontal movement
