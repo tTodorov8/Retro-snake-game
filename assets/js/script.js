@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const startResetButton = document.querySelector(".start-reset-button");
   const displayScore = document.querySelector(".score");
   const gameOverDisplay = document.querySelector(".game-over");
-  
+  const switchGameButton = document.querySelector('.switch-mode')
+  const gameRules = document.querySelector('.game-rules')
   // Variables for touch movement
   let touchXStart = 0;
   let touchYStart = 0;
@@ -90,45 +91,68 @@ function handleTouchMove(e) {
     touchYStart = 0;
   }
   // All activities of the snake
-  function runTheGame() {
-    if (
-      currentSnake[0] + direction > 0 &&
-      currentSnake[0] + direction < width * width
-    ) {
-      if (
-        squares[currentSnake[0] + direction].classList.contains("snake") &&
-        direction
-      ) {
-        squares.forEach((square) => {
-          square.classList.remove("snake");
-          square.classList.remove("apple");
-        });
-        clearInterval(gameInterval);
-        gameOverDisplay.style.display = "block";
-        return;
-
-        // startResetGame();
-      }
+  let isSnakeHittingWall = true
+  function switchMode() {
+    isSnakeHittingWall = !isSnakeHittingWall
+    startResetGame()
+    if (isSnakeHittingWall == true) {
+      gameRules.innerHTML ='Snake pass trough the walls'
+      
+    } else {
+      gameRules.innerHTML = 'Snake hit the walls'
     }
-    //  Variant 1 - if the snake hits borders and itself - Game variant 1
-    // if (
-    //   (currentSnake[0] % width === width - 1 && direction === 1) || //right
-    //   (currentSnake[0] % width === 0 && direction === -1) || // left
-    //   (currentSnake[0] - width < 0 && direction === -width) || // up
-    //   (currentSnake[0] >= width * width && direction === width) || // down
-    //   squares[currentSnake[0] + direction].classList.contains("snake")
-    // ) {
-    //   alert(`GAME OVER`);
-    //   return clearInterval(gameInterval);
-    // }
+    console.log(isSnakeHittingWall);
+    
+  }
+  switchGameButton.addEventListener('click', switchMode)
+  
+  
+  function runTheGame() {
+    /// Variant 2 - move trough walls
+    if (isSnakeHittingWall) {
+      if (
+        currentSnake[0] + direction > 0 &&
+        currentSnake[0] + direction < width * width
+      ) {
+        if (
+          squares[currentSnake[0] + direction].classList.contains("snake") &&
+          direction
+        ) {
+          squares.forEach((square) => {
+            square.classList.remove("snake");
+            square.classList.remove("apple");
+          });
+          clearInterval(gameInterval);
+          gameOverDisplay.style.display = "block";
+          return;
+  
+          // startResetGame();
+        }
+      }
+    } else {
+      //  Variant 1 - if the snake hits borders and itself - Game variant 1
+    if (
+      (currentSnake[0] % width === width - 1 && direction === 1) || //right
+      (currentSnake[0] % width === 0 && direction === -1) || // left
+      (currentSnake[0] - width < 0 && direction === -width) || // up
+      (currentSnake[0] >= width * width && direction === width) || // down
+      squares[currentSnake[0] + direction].classList.contains("snake")
+    ) {
+       clearInterval(gameInterval);
+      alert(`GAME OVER`);
+      return
+    }
+    
     // let tail = currentSnake.pop();
     // squares[tail].classList.remove("snake");
     // //Moving the snake forward , unshift 0 index of the snake plus direction of movement
     // currentSnake.unshift(currentSnake[0] + direction);
-
+  }
+    
+    
+    
     ////////////
 
-    /// Variant 2 - move trough walls
 
     //  Remove class snake of the tail
     let tail = currentSnake.pop();
@@ -177,7 +201,7 @@ function handleTouchMove(e) {
       gameInterval = setInterval(runTheGame, speedTime);
       randomApple();
     }
-
+    
     // Adding snake class to snake parts
     currentSnake.forEach((snakePart) => {
       squares[snakePart].classList.add("snake");
@@ -215,7 +239,9 @@ function handleTouchMove(e) {
     }
     squares[appleIndex].classList.add("apple");
   }
-
+  
+  
   document.addEventListener("keyup", controlSnake);
+  
   startResetButton.addEventListener("click", startResetGame);
 });

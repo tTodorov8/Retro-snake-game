@@ -11,9 +11,11 @@ body {
     text-align: center;
     .title {
       font-family: "retro-game-font";
-
+      .game-rules {
+        color: rgb(139, 139, 139);
+      }
       h1 {
-        color: white;
+        color: rgb(255, 255, 255);
       }
       p {
       }
