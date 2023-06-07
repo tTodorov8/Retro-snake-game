@@ -92,7 +92,7 @@ function handleTouchMove(e) {
   }
   // All activities of the snake
   let isSnakeHittingWall = true
-  let fix = 1
+  
   function switchMode() {
     isSnakeHittingWall = !isSnakeHittingWall
     startResetGame()
